@@ -4,9 +4,18 @@
 // masukkan ke dalam table user (name, email, password) nilainya dari masing-masing inputan 
 //fungsi insert
 
+
+
+
 include "config/koneksi.php";
 if (isset($_POST['simpan'])) {
     $name = $_POST['name'];
+    $gender = $_POST['gender'];
+    $education = $_POST['education'];
+     $phone = $_POST['phone'];
+ $email = $_POST['email'];
+  $address = $_POST['address'];
+
 
     $query = mysqli_query($config, "INSERT INTO instructors (name, gender, education, phone, email, address) 
  VALUES ('$name','$gender','$education','$phone','$email','$address')");
@@ -26,7 +35,7 @@ if (isset($_POST['edit'])) {
 
     $queryUpdate = mysqli_query($config, "UPDATE instructors SET name='$name', gender='$gender', education='$education', phone='$phone', email='$email', address='$address'");
     if ($queryUpdate) {
-        header("location:?page=instructors&ubah=berhasil");
+        header("location:?page=instructor&ubah=berhasil");
     }
 }
 
@@ -48,8 +57,8 @@ if (isset($_POST['edit'])) {
             <label for="">Gender *</label>
         </div>
         <div class="col-sm-10">
-            <input type="radio" name="gender" value="1" checked> Man
-            <input type="radio" name="gender" value="0"> Wooman
+            <input type="radio" name="gender" value="1" checked> Male
+            <input type="radio" name="gender" value="0"> Female
         </div>
     </div>
     <div class="mb-3 row">
@@ -83,7 +92,7 @@ if (isset($_POST['edit'])) {
         <div class="col-sm-10">
             <input required name="email" type="text"
                 class="form-control"
-                placeholder="Masukkan kemampuan anda"
+                placeholder="username@gmail.com"
                 value="<?= isset($_GET['edit']) ? $rowEdit['email'] : '' ?>">
         </div>
     </div>
@@ -92,7 +101,7 @@ if (isset($_POST['edit'])) {
             <label for="">Address * </label>
         </div>
         <div class="col-sm-10">
-            <textarea id="summernote" class="form-control" name="description" cols="30" rows="5"><?php echo !isset($row['description']) ? "" : $row['description'] ?></textarea>
+            <textarea id="summernote" class="form-control" name="address" cols="30" rows="5"><?php echo !isset($rowEdit['address']) ? "" : $rowEdit['address'] ?></textarea>
         </div>
     </div>
 
