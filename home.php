@@ -1,4 +1,9 @@
-<?php session_start() ?>
+<?php
+session_start();
+ob_start();
+include "config/koneksi.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
