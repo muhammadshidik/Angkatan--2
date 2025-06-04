@@ -14,7 +14,7 @@ $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
                     <a href="?page=tambah-major" class="btn btn-primary">Add Major</a>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                             <tr>
                                 <th>No</th>

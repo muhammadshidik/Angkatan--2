@@ -46,12 +46,12 @@ if (isset($_POST['name'])) {
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="mb-3 row">
                         <div class="col-sm-2">
-                            <label for="">Nama instruktur * </label>
+                            <label for="">Name instructor * </label>
                         </div>
                         <div class="col-sm-10">
                             <input required name="name" type="text"
                                 class="form-control"
-                                placeholder="Masukkan nama Instruktur"
+                                placeholder="Insert name instructor!"
                                 value="<?= isset($_GET['edit']) ? $rowEdit['name'] : '' ?>">
                         </div>
                     </div>
@@ -66,7 +66,7 @@ if (isset($_POST['name'])) {
                     </div>
                     <div class="mb-3 row">
                         <div class="col-sm-2">
-                            <label for="">education* </label>
+                            <label for="">Education * </label>
                         </div>
                         <div class="col-sm-10">
                             <input required name="education" type="text"
