@@ -1,51 +1,49 @@
 <?php
-// jika user/pengguna mencet tombol simpan
-// ambil data dari inputan, email, nama dan password
-// masukkan ke dalam table user (name, email, password) nilainya dari masing-masing inputan 
-//fungsi insert
 
-include "config/koneksi.php";
-if (isset($_POST['simpan'])) {
-    $name = $_POST['name'];
-
-    $query = mysqli_query($config, "INSERT INTO majors (name) 
- VALUES ('$name')");
-    if ($query) {
-        header("location:?page=major&tambah=berhasil");
+if (isset($_GET['delete'])) {
+    $id_user = isset($_GET['delete']) ? $_GET['delete'] : '';
+    $queryDelete = mysqli_query($config, "DELETE FROM majors WHERE id='$id_user'");
+    if ($queryDelete) {
+        header("location:?page=major&hapus=berhasil");
+    } else {
+        header("location:?page=major&hapus=gagal");
     }
 }
-
-//revisian ambil dari pak reza
-$header = isset($_GET['edit']) ? "Edit" : "Tambah";
 $id_user = isset($_GET['edit']) ? $_GET['edit'] : '';
 $queryEdit = mysqli_query($config, "SELECT * FROM majors WHERE id='$id_user'");
-$rowEdit  = mysqli_fetch_assoc($queryEdit);
-
-if (isset($_POST['edit'])) {
+$rowEdit = mysqli_fetch_assoc($queryEdit);
+// print_r($id_user);
+if (isset($_POST['name'])) {
+    //ada tidak parameter bernama edit, kalo ada jalankan perintah edit/update, kalo tidak ada tambah data baru/insert
     $name = $_POST['name'];
 
-    $queryUpdate = mysqli_query($config, "UPDATE majors SET name='$name'");
-    if ($queryUpdate) {
+    if (!isset($_GET['edit'])) {
+        $insert = mysqli_query($config, "INSERT INTO majors (name) VALUES('$name')");
+        header("location:?page=major&tambah=berhasil");
+    } else {
+        $Update = mysqli_query($config, "UPDATE majors SET name='$name' WHERE id='$id_user'");
         header("location:?page=major&ubah=berhasil");
     }
 }
 
 ?>
-<form action="" method="post" enctype="multipart/form-data">
-    <div class="mb-3 row">
-        <div class="col-sm-2">
-            <label for="">Jurusan * </label>
-        </div>
-        <div class="col-sm-10">
-            <input required name="name" type="text"
-                class="form-control"
-                placeholder="Masukkan jurusan anda"
-                value="<?= isset($_GET['edit']) ? $rowEdit['name'] : '' ?>">
-        </div>
-        <div class="mb-3 row">
-            <div class="col-sm-12">
-                <button name="<?= isset($_GET['edit']) ? 'edit' : 'simpan'; ?>" type="submit"
-                    class="btn btn-primary">Simpan</button>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo isset($id_user) ? 'Edit'  : 'Add' ?> Major</h5>
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="">Name Major</label>
+                        <input value="<?php echo isset($rowEdit['name']) ? $rowEdit['name'] : '' ?>" type="text" class="form-control" name="name" placeholder="" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-success" name="save">
+                    </div>
+                </form>
             </div>
         </div>
-</form>
+    </div>
+</div>

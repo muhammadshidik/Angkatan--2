@@ -1,19 +1,10 @@
-<?php // Memulai blok kode PHP
-// Mengambil semua data dari tabel 'abouts' dan mengurutkannya berdasarkan 'id' secara menurun (DESC).
-// '$config' diasumsikan sebagai variabel koneksi ke database.
-$query = mysqli_query($config, "SELECT * FROM instructors ORDER BY id DESC");
-
-// Mengambil semua baris hasil query sebagai array asosiatif.
-// Setiap baris akan menjadi elemen dalam array '$row', dengan nama kolom sebagai kunci.
+<?php
+$query = mysqli_query($config, "SELECT * FROM  instructors ORDER BY id DESC");
+//desc : 12345, asc:54321
 $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
-// Logika untuk tombol hapus dari database
-// Mengecek apakah ada parameter 'delete' yang dikirim melalui URL (metode GET).
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $queryDelete = mysqli_query($config, "DELETE FROM instructors WHERE id='$id'");
-    header("location:?page=instructor&hapus=berhasil");
-}
+
 ?>
+
 
 <div class="row">
     <div class="col-12">
@@ -43,14 +34,14 @@ if (isset($_GET['delete'])) {
                                 <tr>
                                     <td><?php echo $key += 1; ?></td>
                                     <td><?php echo $data['name']; ?></td>
-                                    <td><?php echo $data['gender']; ?></td>
+                                    <td><?php echo $data['gender'] == 1 ?  'male' : 'female'; ?></td>
                                     <td><?php echo $data['education']; ?></td>
                                     <td><?php echo $data['phone']; ?></td>
                                     <td><?php echo $data['email']; ?></td>
                                     <td><?php echo $data['address']; ?></td>
                                     <td> <a href="?page=tambah-instructor&edit=<?php echo $data['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                                         <a onclick="return confirm('Are you sure wanna delete this data??')"
-                                            href="?page=instructor&delete=<?php echo $data['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                                            href="?page=tambah-instructor&delete=<?php echo $data['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

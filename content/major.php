@@ -1,18 +1,8 @@
-<?php // Memulai blok kode PHP
-// Mengambil semua data dari tabel 'abouts' dan mengurutkannya berdasarkan 'id' secara menurun (DESC).
-// '$config' diasumsikan sebagai variabel koneksi ke database.
-$query = mysqli_query($config, "SELECT * FROM majors ORDER BY id DESC");
-
-// Mengambil semua baris hasil query sebagai array asosiatif.
-// Setiap baris akan menjadi elemen dalam array '$row', dengan nama kolom sebagai kunci.
+<?php
+$query = mysqli_query($config, "SELECT * FROM  majors ORDER BY id DESC");
+//desc : 12345, asc:54321
 $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
-// Logika untuk tombol hapus dari database
-// Mengecek apakah ada parameter 'delete' yang dikirim melalui URL (metode GET).
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $queryDelete = mysqli_query($config, "DELETE FROM majors WHERE id='$id'");
-    header("location:?page=major&hapus=berhasil");
-}
+
 ?>
 
 <div class="row">
@@ -29,7 +19,6 @@ if (isset($_GET['delete'])) {
                             <tr>
                                 <th>No</th>
                                 <th>Name Major</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +29,7 @@ if (isset($_GET['delete'])) {
                                     <td><?php echo $data['name']; ?></td>
                                     <td> <a href="?page=tambah-major&edit=<?php echo $data['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                                         <a onclick="return confirm('Are you sure wanna delete this data??')"
-                                            href="?page=major&delete=<?php echo $data['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                                            href="?page=tambah-major&delete=<?php echo $data['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
