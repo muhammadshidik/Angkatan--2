@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jun 2025 pada 10.22
+-- Waktu pembuatan: 05 Jun 2025 pada 09.56
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -34,6 +34,7 @@ CREATE TABLE `instructors` (
   `education` varchar(30) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `Password` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -43,9 +44,9 @@ CREATE TABLE `instructors` (
 -- Dumping data untuk tabel `instructors`
 --
 
-INSERT INTO `instructors` (`id`, `name`, `gender`, `education`, `phone`, `email`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Om Burhan', 1, 'Universitas Indraprasta PGRI', '089684758768', 'sidiksadar11@gmail.com', 'Jl. TB Simatupang No.51, RT.11/RW.2, Susukan, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13750, Indonesia', '2025-06-04 03:16:16', '2025-06-04 05:00:17'),
-(5, 'Muhammad Reihan Perdana', 1, 'Universitas Indonesia', '085710590044', 'Reihanprdn9@gmail.com', 'Jl.Warakas II GGIIB NO5B RT005 RW02 KEL.WARAKAS KEC.TANJUNG PRIOK', '2025-06-04 04:52:06', '2025-06-04 06:21:04');
+INSERT INTO `instructors` (`id`, `name`, `gender`, `education`, `phone`, `email`, `Password`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Om Burhan', 1, 'Universitas Indraprasta PGRI', '089684758768', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Jl. TB Simatupang No.51, RT.11/RW.2, Susukan, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13750, Indonesia', '2025-06-04 03:16:16', '2025-06-05 04:00:06'),
+(2, 'Muhammad Siddiq', 1, 'Universitas Indonesia', '085710590044', 'sidiksadar11@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Jl.Warakas II GGIIB NO5B RT005 RW02 KEL.WARAKAS KEC.TANJUNG PRIOK', '2025-06-04 04:52:06', '2025-06-05 03:59:17');
 
 -- --------------------------------------------------------
 
@@ -66,10 +67,10 @@ CREATE TABLE `instructor_majors` (
 --
 
 INSERT INTO `instructor_majors` (`id`, `id_major`, `id_instructor`, `created_at`, `updated_at`) VALUES
-(8, 20, 5, '2025-06-04 06:45:03', NULL),
-(11, 19, 10, '2025-06-04 07:33:26', NULL),
-(12, 19, 9, '2025-06-04 07:39:36', NULL),
-(17, 19, 16, '2025-06-04 08:21:43', NULL);
+(47, 22, 1, '2025-06-05 02:25:58', NULL),
+(49, 23, 2, '2025-06-05 02:40:47', NULL),
+(50, 24, 2, '2025-06-05 03:40:14', NULL),
+(51, 21, 1, '2025-06-05 07:35:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -89,10 +90,10 @@ CREATE TABLE `majors` (
 --
 
 INSERT INTO `majors` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(17, 'Pendidikan Bahasa dan Sastra Indonesia', '2025-06-04 04:40:31', NULL),
-(18, ' Pendidikan Bahasa Inggris', '2025-06-04 04:40:43', NULL),
-(19, 'Pendidikan Biologi', '2025-06-04 04:40:52', NULL),
-(20, 'Sains Data', '2025-06-04 04:41:18', NULL);
+(21, 'Teknik Informatika', '2025-06-05 02:15:02', NULL),
+(22, 'Sistem informasi', '2025-06-05 02:15:11', NULL),
+(23, 'Pendidikan Bahasa Inggris', '2025-06-05 02:15:28', NULL),
+(24, 'Pendidikan Sejarah', '2025-06-05 02:15:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,6 +103,8 @@ INSERT INTO `majors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `moduls` (
   `id` int(11) NOT NULL,
+  `id_major` int(11) NOT NULL,
+  `id_instructor` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -139,7 +142,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Muhammad Reihan Perdana', '2025-06-04 03:07:21', NULL);
+(3, 'Instuktur', '2025-06-05 02:51:15', NULL),
+(4, 'PIC', '2025-06-05 02:51:22', NULL),
+(5, 'Siswa', '2025-06-05 02:51:30', '2025-06-05 04:59:17');
 
 -- --------------------------------------------------------
 
@@ -227,13 +232,13 @@ ALTER TABLE `instructors`
 -- AUTO_INCREMENT untuk tabel `instructor_majors`
 --
 ALTER TABLE `instructor_majors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `majors`
 --
 ALTER TABLE `majors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `moduls`
@@ -251,7 +256,7 @@ ALTER TABLE `moduls_details`
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
