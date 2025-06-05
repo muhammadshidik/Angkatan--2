@@ -7,11 +7,17 @@ include 'config/koneksi.php';
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = sha1($_POST['password']);
+    $role = $_POST['role'];
 
     //tampilkan semua data dari tabel user dimana emailnya di ambil dari
     // orang yang input email dan password diambil dari orang yang input passsword
+    //jika login dengan role instruktur
+    if ($role == 1) {
+        $queryLogin = mysqli_query($config, "SELECT * FROM instructors WHERE email='$email' AND password='$password'");
+    } else {
+        $queryLogin = mysqli_query($config, "SELECT * FROM users WHERE email='$email' AND password='$password'");
+    }
 
-    $queryLogin = mysqli_query($config, "SELECT * FROM users WHERE email='$email' AND password='$password'");
 
     //jika data ditemukan, mysqli_num_rows("hasil query")
     //header (location:namaFile.php): meredirect atau melempar kehalaman selanjutnya atau ke halaman lain
@@ -113,6 +119,17 @@ if (isset($_POST['email'])) {
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control" id="yourPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="yourRole" class="form-label">Role *</label>
+                                            <select name="role" class="form-control" id="yourRole" required>
+                                                <option value="">Pilih Role</option>
+                                                <option value="1">Instruktur</option>
+                                                <option value="2">Siswa</option>
+                                                <option value="3">Lainnya</option>
+                                            </select>
+                                            <div class="invalid-feedback">Please selected your Role!</div>
                                         </div>
 
                                         <div class="col-12">

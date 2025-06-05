@@ -25,13 +25,13 @@ if (isset($_POST['name'])) {
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $address = $_POST['address'];
-
+    $password = isset($_POST['password']) ? sha1($_POST['password']) : $rowEdit['password'];
     if (!isset($_GET['edit'])) {
-        $insert = mysqli_query($config, "INSERT INTO instructors (name, gender, education, phone, email, address) 
- VALUES ('$name','$gender','$education','$phone','$email','$address')");
+        $insert = mysqli_query($config, "INSERT INTO instructors (name, gender, education, phone, email, address, password) 
+ VALUES ('$name','$gender','$education','$phone','$email','$address', '$password')");
         header("location:?page=instructor&tambah=berhasil");
     } else {
-        $Update = mysqli_query($config, "UPDATE instructors SET name='$name', gender='$gender', education='$education', phone='$phone', email='$email', address='$address' WHERE id='$id_user'");
+        $Update = mysqli_query($config, "UPDATE instructors SET name='$name', gender='$gender', education='$education', phone='$phone', email='$email', password='$password', address='$address' WHERE id='$id_user'");
         header("location:?page=instructor&ubah=berhasil");
     }
 }
@@ -99,6 +99,18 @@ if (isset($_POST['name'])) {
                                 value="<?= isset($_GET['edit']) ? $rowEdit['email'] : '' ?>">
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-2">
+                            <label for="">Password *</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password" placeholder="Enter Your password" <?php echo empty($_GET['edit']) ? 'required' : '' ?>>
+                            <small>
+                                )* if you want to change your password, you can fill this field
+                            </small>
+                        </div>
+                    </div>
+
                     <div class="mb-3 row">
                         <div class="col-sm-2">
                             <label for="">Address * </label>
