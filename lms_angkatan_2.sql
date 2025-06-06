@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2025 pada 09.56
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Jun 06, 2025 at 12:30 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `instructors`
+-- Table structure for table `instructors`
 --
 
 CREATE TABLE `instructors` (
@@ -41,17 +41,17 @@ CREATE TABLE `instructors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `instructors`
+-- Dumping data for table `instructors`
 --
 
 INSERT INTO `instructors` (`id`, `name`, `gender`, `education`, `phone`, `email`, `Password`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Om Burhan', 1, 'Universitas Indraprasta PGRI', '089684758768', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Jl. TB Simatupang No.51, RT.11/RW.2, Susukan, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13750, Indonesia', '2025-06-04 03:16:16', '2025-06-05 04:00:06'),
-(2, 'Muhammad Siddiq', 1, 'Universitas Indonesia', '085710590044', 'sidiksadar11@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Jl.Warakas II GGIIB NO5B RT005 RW02 KEL.WARAKAS KEC.TANJUNG PRIOK', '2025-06-04 04:52:06', '2025-06-05 03:59:17');
+(2, 'Muhammad Siddiq', 1, 'Universitas Indraprasta PGRI', '089684758768', 'sidiksadar11@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Jl. TB. Simatupang, RT.011, RW.002, KEL. Susukan, KEC. Ciracas, Jakarta Timur, Kode Pos. 13750. ', '2025-06-04 04:52:06', '2025-06-06 09:49:17'),
+(6, 'Riyan Perdana Putra', 1, 'Universitas Indraprasta PGRI', '089737337890', 'riyan@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'JL. Masjid ', '2025-06-06 09:50:13', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `instructor_majors`
+-- Table structure for table `instructor_majors`
 --
 
 CREATE TABLE `instructor_majors` (
@@ -63,19 +63,19 @@ CREATE TABLE `instructor_majors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `instructor_majors`
+-- Dumping data for table `instructor_majors`
 --
 
 INSERT INTO `instructor_majors` (`id`, `id_major`, `id_instructor`, `created_at`, `updated_at`) VALUES
 (47, 22, 1, '2025-06-05 02:25:58', NULL),
-(49, 23, 2, '2025-06-05 02:40:47', NULL),
-(50, 24, 2, '2025-06-05 03:40:14', NULL),
-(51, 21, 1, '2025-06-05 07:35:19', NULL);
+(51, 21, 1, '2025-06-05 07:35:19', NULL),
+(52, 41, 2, '2025-06-06 09:50:27', NULL),
+(53, 40, 2, '2025-06-06 09:50:44', '2025-06-06 09:50:51');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `majors`
+-- Table structure for table `majors`
 --
 
 CREATE TABLE `majors` (
@@ -86,19 +86,33 @@ CREATE TABLE `majors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `majors`
+-- Dumping data for table `majors`
 --
 
 INSERT INTO `majors` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(21, 'Teknik Informatika', '2025-06-05 02:15:02', NULL),
-(22, 'Sistem informasi', '2025-06-05 02:15:11', NULL),
-(23, 'Pendidikan Bahasa Inggris', '2025-06-05 02:15:28', NULL),
-(24, 'Pendidikan Sejarah', '2025-06-05 02:15:41', NULL);
+(25, 'Akutansi Junior', '2025-06-06 09:42:07', NULL),
+(26, 'Barista', '2025-06-06 09:42:27', NULL),
+(27, 'Digital Marketing', '2025-06-06 09:42:41', NULL),
+(28, 'Bahasa Inggris', '2025-06-06 09:44:02', NULL),
+(29, 'Content Creator', '2025-06-06 09:44:20', NULL),
+(30, 'Desain Grafis Madya', '2025-06-06 09:44:35', NULL),
+(31, 'Teknisi Jaringan', '2025-06-06 09:44:49', NULL),
+(32, 'Make Up Artist', '2025-06-06 09:45:04', NULL),
+(33, 'Data Management Staff', '2025-06-06 09:45:17', NULL),
+(34, 'Tata Boga', '2025-06-06 09:45:26', NULL),
+(35, 'Tata Busana', '2025-06-06 09:45:35', NULL),
+(36, 'Perhotelan', '2025-06-06 09:46:06', NULL),
+(37, 'Kontruksi Bangunan dengan CAD', '2025-06-06 09:46:19', NULL),
+(38, 'Teknisi Komputer', '2025-06-06 09:46:35', NULL),
+(39, 'Desain Multimedia', '2025-06-06 09:46:52', NULL),
+(40, 'Web Programming', '2025-06-06 09:47:02', NULL),
+(41, 'Mobile Programming', '2025-06-06 09:47:24', NULL),
+(42, 'Bahasa Korea', '2025-06-06 09:47:34', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `moduls`
+-- Table structure for table `moduls`
 --
 
 CREATE TABLE `moduls` (
@@ -113,7 +127,7 @@ CREATE TABLE `moduls` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `moduls_details`
+-- Table structure for table `moduls_details`
 --
 
 CREATE TABLE `moduls_details` (
@@ -127,7 +141,7 @@ CREATE TABLE `moduls_details` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -138,18 +152,19 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (3, 'Instuktur', '2025-06-05 02:51:15', NULL),
 (4, 'PIC', '2025-06-05 02:51:22', NULL),
-(5, 'Siswa', '2025-06-05 02:51:30', '2025-06-05 04:59:17');
+(5, 'Siswa', '2025-06-05 02:51:30', '2025-06-05 04:59:17'),
+(6, 'Administrasi', '2025-06-06 09:41:10', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -163,103 +178,102 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `update_at`, `deleted_at`) VALUES
-(1, 'om burhan', 'admin@gmail.com', '9adcb29710e807607b683f62e555c22dc5659713', '2025-06-03 02:51:31', '2025-06-04 05:29:47', 1),
 (2, 'Om Burhan', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-06-03 07:06:12', '2025-06-04 05:28:56', 0),
-(9, 'Muhammad Reihan Perdana', 'sidiksadar@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-06-04 02:41:28', NULL, 0),
-(10, 'om jamal', 'sidiksadar11@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-06-04 05:31:57', NULL, 0);
+(9, 'Agra Saputra', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-06-04 02:41:28', '2025-06-06 09:52:10', 0),
+(10, 'Muhammad Siddiq', 'sidiksadar11@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-06-04 05:31:57', '2025-06-06 09:51:50', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `instructors`
+-- Indexes for table `instructors`
 --
 ALTER TABLE `instructors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `instructor_majors`
+-- Indexes for table `instructor_majors`
 --
 ALTER TABLE `instructor_majors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `majors`
+-- Indexes for table `majors`
 --
 ALTER TABLE `majors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `moduls`
+-- Indexes for table `moduls`
 --
 ALTER TABLE `moduls`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `moduls_details`
+-- Indexes for table `moduls_details`
 --
 ALTER TABLE `moduls_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `instructors`
+-- AUTO_INCREMENT for table `instructors`
 --
 ALTER TABLE `instructors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `instructor_majors`
+-- AUTO_INCREMENT for table `instructor_majors`
 --
 ALTER TABLE `instructor_majors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT untuk tabel `majors`
+-- AUTO_INCREMENT for table `majors`
 --
 ALTER TABLE `majors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT untuk tabel `moduls`
+-- AUTO_INCREMENT for table `moduls`
 --
 ALTER TABLE `moduls`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `moduls_details`
+-- AUTO_INCREMENT for table `moduls_details`
 --
 ALTER TABLE `moduls_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
