@@ -62,9 +62,9 @@ include "config/koneksi.php";
                     <li class="breadcrumb-item">Pages</li>
                     <li class="breadcrumb-item active">Blank</li>
                 </ol>
+                 <button onclick="history.back()" class="btn btn-secondary ms-auto">Kembali</button>
             </nav>
         </div><!-- End Page Title -->
-
         <section class="section">
             <?php
             if (isset($_GET['page'])) {
