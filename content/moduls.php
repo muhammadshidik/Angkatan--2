@@ -15,7 +15,6 @@ instructors.name as instructor_name, moduls.*
 FROM moduls
 LEFT JOIN majors ON majors.id = moduls.id_major
 LEFT JOIN instructors ON instructors.id = moduls.id_instructor
-$where
 ORDER BY moduls.id DESC");
 // 12345, 54321
 $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
