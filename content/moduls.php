@@ -1,11 +1,14 @@
 <?php
 $id_user = isset($_SESSION['ID_USER']) ? $_SESSION['ID_USER'] : '';
 $id_role = isset($_SESSION['ID_ROLE']) ? $_SESSION['ID_ROLE'] : '';
-//
-if($id_role == 2){
-    $where = "WHERE moduls.id_major = '$id_major'";
-}elseif($id_role == 1){
-$where = "WHERE moduls.id_instructor = '$id_user'"
+
+// 
+$rowStudent = mysqli_fetch_assoc(mysqli_query($config, "SELECT * FROM students WHERE id='$id_user'"));
+$id_major   = $rowStudent['id_major'];
+if ($id_role == 2) {
+    $where = "WHERE moduls.id_major='$id_major'";
+} elseif ($id_role == 1) {
+    $where = "WHERE moduls.id_instuctor='$id_user'";
 }
 $query = mysqli_query($config, "SELECT majors.name as major_name,
 instructors.name as instructor_name, moduls.* 
@@ -22,10 +25,10 @@ $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Data Modul</h5>
-                <?php if ($_SESSION['ID_ROLE'] == 1) ?>
-                <div class="mb-3" align="right">
-                    <a href="?page=tambah-modul" class="btn btn-primary">Add Modul</a>
-                </div>
+<?php if ($id_role == 1): ?>
+                    <div class="mb-3" align="right">
+                        <a href="?page=tambah-modul" class="btn btn-primary">Add Modul</a>
+                    </div>
                 <?php endif ?>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -42,9 +45,11 @@ $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
                             <?php foreach ($rows as $index => $row): ?>
                                 <tr>
                                     <td><?php echo $index += 1; ?></td>
-                                    <td><a href="?page=tambah-modul&detail=<?php echo $row['id'] ?>">
+                                     <td><a href="?page=tambah-modul&detail=<?php echo $row['id'] ?>">
                                             <i class="bi bi-link"></i>
-                                            <?php echo $row['name'] ?></a></td>
+                                            <?php echo $row['name'] ?>
+                                        </a>
+                                    </td>
                                     <td><?php echo $row['instructor_name'] ?></td>
                                     <td><?php echo $row['major_name'] ?></td>
                                     <td>
