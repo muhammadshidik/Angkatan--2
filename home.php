@@ -65,7 +65,7 @@ include "config/koneksi.php";
                     <li class="breadcrumb-item">Pages</li>
                     <li class="breadcrumb-item active">Blank</li>
                 </ol>
-                <button onclick="history.back()" class="btn btn-secondary ms-auto">Kembali</button>
+                <button onclick="history.back()" class="btn btn-secondary ms-auto" align="right">Kembali</button>
                 <!-- button back -->
 
             </nav>
