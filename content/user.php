@@ -1,8 +1,7 @@
 <?php
-$query = mysqli_query($config, "SELECT * FROM  users WHERE deleted_at = 0 ORDER BY id DESC");
-//desc : 12345, asc:54321
+$query = mysqli_query($config, "SELECT * FROM users WHERE deleted_at = 0 ORDER BY id DESC");
+// 12345, 54321
 $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
-
 ?>
 
 <div class="row">
@@ -10,8 +9,9 @@ $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Data User</h5>
-                <div class="mb-3" align="right">
+                <div class="mb-3 d-flex justify-content-between">
                     <a href="?page=tambah-user" class="btn btn-primary">Add User</a>
+                    <a href="?page=restore-user" class="btn btn-primary">Restore</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered datatable">

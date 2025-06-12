@@ -25,7 +25,7 @@ if (isset($_POST['name'])) {
         $insert = mysqli_query($config, "INSERT INTO menus (name, parent_id, icon, url, urutan) VALUES('$name','$parent_id','$icon','$url','$urutan')");
         header("location:?page=menu&tambah=berhasil");
     } else {
-        $Update = mysqli_query($config, "UPDATE menus SET name='$name', parent_id='$parent_id, 'icon='$icon', urutan='$urutan', url='$url' WHERE id='$id'");
+        $Update = mysqli_query($config, "UPDATE menus SET name='$name', parent_id='$parent_id', icon='$icon', urutan='$urutan', url='$url' WHERE id='$id_user'");
         header("location:?page=menu&ubah=berhasil");
     }
 }

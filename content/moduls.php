@@ -10,6 +10,7 @@ if ($id_role == 6) {
 } elseif ($id_role == 3) {
     $where = "WHERE moduls.id_instructor='$id_user'";
 }
+
 $query = mysqli_query($config, "SELECT majors.name as major_name,
 instructors.name as instructor_name, moduls.* 
 FROM moduls
